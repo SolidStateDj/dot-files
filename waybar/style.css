@@ -1,0 +1,410 @@
+/* =============================================================================
+ *
+ * Waybar configuration
+ *
+ * Configuration reference: https://github.com/Alexays/Waybar/wiki/Configuration
+ *
+ * =========================================================================== */
+
+/* -----------------------------------------------------------------------------
+ * Keyframes
+ * -------------------------------------------------------------------------- */
+
+@import "machiatto.css";
+
+/*
+  Polar Night
+  nord0  #2e3440
+  nord1  #3b4252
+  nord2  #434c5e
+  nord3  #4c566a
+  Snow Storm
+  nord4  #d8dee9
+  nord5  #e5e9f0
+  nord6  #eceff4
+  Frost
+  nord7  #8fbcbb
+  nord8  #88c0d0
+  nord9  #81a1c1
+  nord10 #5e81ac
+  Aurora
+  nord11 #bf616a
+  nord12 #d08770
+  nord13 #ebcb8b
+  nord14 #a3be8c
+  nord15 #b48ead
+  */
+
+/* -----------------------------------------------------------------------------
+   * Base styles
+   * -------------------------------------------------------------------------- */
+
+/* Reset all styles */
+
+* {
+  color: @lavender;
+  border: 0;
+  padding: 0 2px;
+  font-family: "Helvetica";
+
+  /* font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif; */
+  /* font-family: "Hack Nerd Font"; */
+  font-size: 14px;
+  /* padding-bottom:4px;
+      padding-top: 4px; */
+  transition: all 0.5s ease;
+}
+
+window#waybar {
+  /* background:#2d2a2e; */
+  background-color: rgba(36, 39, 58, 0.7);
+  /* background-color: rgba(0, 0, 0, 0); */
+  /* background-color: shade(#1e1e2e, 0.95); */
+}
+
+window#waybar.hidden {
+  opacity: 0.2;
+}
+
+tooltip {
+  background: @base;
+}
+
+tooltip label {
+  padding: 8px 16px;
+  font-weight: bold;
+}
+
+#workspaces button {
+  color: white;
+  /* background-color: @base; */
+  margin: 0px 1px;
+  padding: 0px 2px;
+  border-radius: 0px;
+  border-bottom: solid 1px transparent;
+}
+
+#workspaces button:hover * {
+  color: @mauve;
+}
+
+#workspaces button:hover {
+  color: @mauve;
+  box-shadow: none; /* Remove predefined box-shadow */
+  text-shadow: none; /* Remove predefined text-shadow */
+  border: #c6a0f6 0px;
+  border-bottom: solid 1px @mauve;
+  background: none;
+  border-radius: 0px;
+}
+
+#workspaces * {
+  color: whitesmoke;
+}
+
+#workspaces {
+  opacity: 1;
+  margin: 4px 8px;
+}
+
+#workspaces button.active {
+  /* box-shadow: inset 0 -3px white; */
+  border-bottom: solid 1px;
+}
+
+#mode {
+  color: #ebcb8b;
+}
+
+#clock,
+#custom-swap,
+#custom-background,
+#custom-cava,
+#battery,
+#cpu,
+#memory,
+#idle_inhibitor,
+#temperature,
+#custom-keyboard-layout,
+#backlight,
+#network,
+#pulseaudio,
+#mode,
+#tray,
+#custom-power,
+#custom-pacman,
+#mpd {
+  border-style: solid;
+  opacity: 1;
+  margin: 4px 0px;
+}
+
+/* -----------------------------------------------------------------------------
+   * Module styles
+   * -------------------------------------------------------------------------- */
+#custom-cava {
+  color: @mauve;
+  font-family: "Lilex";
+  font-size: 14px;
+}
+
+#custom-notification {
+  font-family: "NotoSansMono Nerd Font";
+  font-size: 20px;
+}
+
+#mpd {
+  color: @mauve;
+  margin-left: 5px;
+  background-color: rgba(0, 0, 0, 0);
+}
+
+#mpd.2 {
+  margin: 4px 0px 4px 6px;
+  padding: 4px 12px 4px 10px;
+}
+
+#mpd.3 {
+  margin: 8px 0px 8px 0px;
+  padding: 4px;
+}
+
+#mpd.4 {
+  margin: 4px 0px 4px 0px;
+  padding: 4px 10px 4px 14px;
+}
+
+#mpd.2,
+#mpd.3,
+#mpd.4 {
+  background-color: @base;
+  font-size: 14px;
+}
+
+#custom-swap {
+  color: @base;
+  margin-left: 10px;
+  background-color: @mauve;
+}
+
+#custom-background {
+  background-color: @base;
+  color: white;
+  padding: 4px 14px 4px 5px;
+}
+
+#clock {
+  /* background-color:#a3be8c; */
+  color: @sky;
+}
+
+#backlight {
+  color: @yellow;
+  /* border-bottom: 2px solid @yellow; */
+}
+
+#battery {
+  color: #d8dee9;
+  /* border-bottom: 2px solid #d8dee9; */
+  margin-right: 10px;
+}
+
+#battery.charging {
+  color: #81a1c1;
+  /* border-bottom: 2px solid #81a1c1; */
+}
+
+@keyframes blink {
+  to {
+    color: @red;
+    /* border-bottom: 2px solid @red; */
+  }
+}
+
+#battery.critical:not(.charging) {
+  color: #bf616a;
+  /* border-bottom: 2px solid #bf616a; */
+  animation-name: blink;
+  animation-duration: 0.5s;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+  animation-direction: alternate;
+}
+
+#cpu {
+  color: @sky;
+  padding: 0px 4px;
+  /* border-bottom: 2px solid @sky; */
+}
+
+#cpu #cpu-icon {
+  color: @sky;
+}
+
+#memory {
+  color: @sky;
+  padding: 0px 4px;
+}
+
+#network.disabled {
+  color: #bf616a;
+  /* border-bottom: 2px solid #bf616a; */
+}
+
+#network {
+  color: @green;
+  /* border-bottom: 2px solid @green; */
+}
+
+#network.disconnected {
+  color: #bf616a;
+  /* border-bottom: 2px solid #bf616a; */
+}
+
+#pulseaudio {
+  color: @flamingo;
+  padding-left: 4px;
+  /* border-bottom: 2px solid @flamingo; */
+}
+
+#pulseaudio.muted {
+  color: #3b4252;
+  margin-left: 4px;
+  /* border-bottom: 2px solid #3b4252; */
+}
+
+#temperature {
+  color: @teal;
+  /* border-bottom: 2px solid @teal; */
+}
+
+#temperature.critical {
+  color: @red;
+  /* border-bottom: 2px solid @red; */
+}
+
+#idle_inhibitor {
+  background-color: #ebcb8b;
+  color: @base;
+}
+
+#tray {
+  /* background-color: @base; */
+}
+
+#custom-launcher {
+  background-color: shade(@base, 1.1);
+  color: @mauve;
+  padding: 5px 10px 5px 10px;
+}
+
+#custom-power {
+  color: @base;
+  background-color: @red;
+  margin-left: 5px;
+  margin-right: 15px;
+  padding: 5px 10px;
+}
+
+#custom-media {
+  min-width: 100px;
+  min-height: 14px;
+  margin-top: 4px;
+}
+
+#window {
+  border-style: hidden;
+  margin-left: 10px;
+  /* margin-top:1px;  
+      padding: 8px 1rem; */
+  margin-right: 10px;
+  color: #eceff4;
+}
+
+#mode {
+  margin-bottom: 3px;
+}
+
+#custom-keyboard-layout {
+  color: @peach;
+  /* border-bottom: 2px solid @peach; */
+  margin-right: 10px;
+}
+
+/* window#waybar {
+      background: #2d2a2e;
+  }
+  
+  * {
+      color: #c8b9a9;
+      font-family: Ubuntu Mono, sans-serif;
+      font-size: 12px;
+  }
+  
+  #workspaces button.focused {
+      color: #f2e5bc;
+  }
+  
+  #workspaces button {
+      color: #c8b9a9;
+  }
+  
+  .separator {
+      background-color: #c8b9a9;
+  }
+  
+  #mode {
+      color: #ebcb8b;
+  }
+  
+  #clock {
+      color: #a3be8c;
+  }
+  
+  #battery {
+      color: #d8dee9;
+  }
+  
+  #battery.charging {
+      color: #b48ead;
+  }
+  
+  #battery.critical:not(.charging) {
+      color: #bf616a;
+  }
+  
+  #cpu {
+      color: #a3be8c;
+  }
+  
+  #memory {
+      color: #d3869b;
+  }
+  
+  #network {
+      color: #8fbcbb;
+  }
+  
+  #network.disabled {
+      color: #bf616a;
+  }
+  
+  #network.disconnected {
+      color: #bf616a;
+  }
+  
+  #pulseaudio {
+      color: #b48ead;
+  }
+  
+  #pulseaudio.muted {
+      color: #bf616a;
+  }
+  
+  #temperature {
+      color: #8fbcbb;
+  }
+  
+  #temperature.critical {
+      color: #bf616a;
+  } */

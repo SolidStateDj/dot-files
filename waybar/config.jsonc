@@ -1,0 +1,28 @@
+{
+    "layer": "bottom", // Waybar at top layer
+    "position": "top", // Waybar position (top|bottom|left|right)
+    "margin": "0 0 0 0",
+    "spacing": 2, 
+    "modules-left": [
+        "network", 
+		"cpu",
+        "memory", 
+		"temperature" 
+        // "custom/media"
+    ],
+
+    "modules-center": [
+        "hyprland/workspaces"
+    ],
+
+    "modules-right": [
+        "custom/cava",
+        "pulseaudio", 
+        "tray",
+        "clock", 
+        "custom/notification"
+	],
+
+    "include": "~/.config/waybar/modules.jsonc"
+}
+
