@@ -3,10 +3,10 @@ opacity = 1.0
 blur = true
 
 [font]
-normal.family = "NotoSansM Nerd Font Mono"
-bold.family = "NotoSansM Nerd Font Mono"
-italic.family = "NotoSansM Nerd Font Mono"
-bold_italic.family = "NotoSansM Nerd Font Mono"
+normal.family = "AdwaitaMono Nerd Font"
+bold.family = "AdwaitaMono Nerd Font" 
+italic.family = "AdwaitaMono Nerd Font" 
+bold_italic.family = "AdwaitaMono Nerd Font" 
 
 size = 12.0
 
