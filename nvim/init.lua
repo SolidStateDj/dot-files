@@ -672,15 +672,18 @@ require('lazy').setup({
         rust_analyzer = {
           settings = {
             ['rust-analyzer'] = {
-              -- cachePriming = {
-              --   numThreads = 16,
-              -- },
+              cachePriming = false,
+              check = {
+                workspace = false,
+              },
               files = {
                 watcher = 'server',
                 exclude = { '**/.git/**', '**/target/**', '**/node_modules/**', '**/dist/**', '**/out/**' },
               },
               cargo = {
-                targetDir = 'target/ra',
+                extraEnv = { CARGO_PROFILE_RUST_ANALYZER_INHERITS = 'dev' },
+                extraArgs = { '--profile', 'rust-analyzer' },
+                -- targetDir = 'target/ra',
               },
             },
           },
@@ -744,6 +747,16 @@ require('lazy').setup({
             require('lspconfig')[server_name].setup(server)
           end,
         },
+        ['rust_analyzer'] = function()
+          require('lspconfig').rust_analyzer.setup {
+            cmd = { rust_analyzer },
+            settings = {
+              ['rust_analyzer'] = {
+                checkOnSave = { command = 'clippy' },
+              },
+            },
+          }
+        end,
       }
     end,
   },
@@ -954,7 +967,7 @@ require('lazy').setup({
   { -- Highlight, edit, and navigate code
     'nvim-treesitter/nvim-treesitter',
     build = ':TSUpdate',
-    main = 'nvim-treesitter.configs', -- Sets main module to use for opts
+    main = 'nvim-treesitter.config', -- Sets main module to use for opts
     -- [[ Configure Treesitter ]] See `:help nvim-treesitter`
     opts = {
       ensure_installed = { 'bash', 'c', 'diff', 'html', 'lua', 'luadoc', 'markdown', 'markdown_inline', 'rust', 'query', 'vim', 'vimdoc' },

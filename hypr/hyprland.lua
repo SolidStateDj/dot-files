@@ -1,0 +1,7 @@
+require("hyprland/general")
+require("hyprland.autostart")
+require("hyprland/env")
+require("hyprland/binds")
+require("hyprland/animations")
+require("hyprland/windows")
+require("hyprland/workspaces")

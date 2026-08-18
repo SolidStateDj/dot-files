@@ -1,5 +1,16 @@
 {
-    "hyprland/workspaces": {
+    "hyprland/workspaces": { 
+		"on-scroll-up": "hyprctl dispatch workspace r-1",
+		"on-scroll-down": "hyprctl dispatch workspace r+1",
+		"on-click": "activate",
+		"active-only": false,
+		"all-outputs": true,
+		"format": "{}",
+		"format-icons": {
+		  "urgent": "",
+		  "active": "",
+		  "default": ""
+		},
         "all-outputs": false,
         "sort-by": "number",
         "persistent-workspaces": {
@@ -94,7 +105,7 @@
 
     "cpu": {
         "format": " {usage}%",
-        "interval": 3,
+        "interval": 3
     },
 
     "memory": {
@@ -103,7 +114,10 @@
 
     "temperature": {
         // "thermal-zone": 2,
-        "hwmon-path": "/sys/class/hwmon/hwmon2/temp1_input",
+        // "hwmon-path": "/sys/devices/platform/asus-ec-sensors/hwmon/hwmon5/temp2_input",
+		"hwmon-path": "/sys/class/hwmon/hwmon1/temp1_input",
+		// "hwmon-path-abs": "/sys/devices/platform/asus-ec-sensors/hwmon",
+		// "input-filename": "temp2_input",
         "critical-threshold": 80,
         // "format-critical": "{temperatureC}°C {icon}",
         "format": "{icon} {temperatureC}°C",
