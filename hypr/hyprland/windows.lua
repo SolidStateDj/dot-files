@@ -54,6 +54,13 @@ hl.window_rule({
 })
 hl.window_rule({ match = { class = "^(org.pulseaudio.pavucontrol)$" }, center = true })
 
+hl.window_rule({ match = { class = "(org.gnome.FileRoller)" }, float = true })
+hl.window_rule({ match = { class = "(org.gnome.FileRoller)" }, center = true })
+hl.window_rule({ match = { class = "(org.gnome.FileRoller)" }, size = { "(monitor_w*0.45)", "(monitor_h*0.45)" } })
+
+hl.window_rule({ match = { class = "(thunar)" }, center = true })
+hl.window_rule({ match = { class = "(thunar)" }, size = { "(monitor_w*0.45)", "(monitor_h*0.45)" } })
+
 -- Layers
 hl.layer_rule({
 	name = "screenshots",
