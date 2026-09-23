@@ -33,6 +33,16 @@ hl.window_rule({
 	content = "game",
 })
 
+hl.window_rule({
+	name = "sts-windows",
+	match = {
+		title = "Slay the Spire",
+	},
+	monitor = monitor_1,
+	fullscreen = true,
+	content = "game",
+})
+
 -- Workspaces
 
 hl.window_rule({ match = { class = "^(steam)$" }, workspace = "10" })
